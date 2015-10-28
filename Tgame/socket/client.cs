@@ -14,26 +14,40 @@ namespace Tgame.socket
     {
         static System.Net.Sockets.TcpClient clientSocket = new TcpClient(); // for connet with server create a tcpclient socket
         static NetworkStream stream = null;
-        private static BinaryWriter writer;
+        private static BinaryWriter writer =null;
 
         public void getConnect()
         {
-            clientSocket.Connect(IPAddress.Parse("127.0.0.1"), 6000);
-            stream = clientSocket.GetStream();
-
-            byte[] messsage = Encoding.ASCII.GetBytes(parameters.JOIN);
-
-            for (int i = 0; i < messsage.Length; i++)
+            Console.WriteLine("trying to connect to the game server");
+            try
             {
-                Console.WriteLine(messsage[i]);
+                clientSocket.Connect(IPAddress.Parse("127.0.0.1"), 6000);
+                stream = clientSocket.GetStream();
+
+                byte[] messsage = Encoding.ASCII.GetBytes(parameters.JOIN);
+
+                for (int i = 0; i < messsage.Length; i++)
+                {
+                    Console.WriteLine(messsage[i]);
+                }
+
+                stream.Write(messsage, 0, messsage.Length);
+
+
+                stream.Flush();     //flush the stream
             }
-
-            stream.Write(messsage, 0, messsage.Length);
-
-            
-            stream.Flush();     //flush the stream
-            stream.Close();     //close stream
-
+            catch (Exception e)
+            {
+                Console.WriteLine("Initial connect to the server (WRITING) is Failed! due to " + e.Message);
+                
+            }
+            finally
+            {
+                if (stream != null && writer != null) {
+                    stream.Close();     //close stream
+                    writer.Close();
+                    }
+            }
         }
 
         public void sendData(String message)

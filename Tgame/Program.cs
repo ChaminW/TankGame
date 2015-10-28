@@ -16,16 +16,17 @@ namespace Tgame
         [STAThread]
         static void Main()
         {
-            
+
+            //initially join to the server
             client client1 = new client();
-            client1.sendData(common.parameters.JOIN);
+            //client1.sendData(common.parameters.JOIN);
 
-
+            client1.getConnect();
 
             //init a socket for call back from the server to fetch messages
             server serverCon = new server();
-            Thread thread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
-            thread.Start();
+            Thread serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
+            serverThread.Start();
             //Console.WriteLine("thread start");
 
             //server server1 = new server();

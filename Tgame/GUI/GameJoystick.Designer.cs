@@ -33,11 +33,14 @@
             this.btnDown = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnShoot = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(141, 70);
+            this.btnUp.Location = new System.Drawing.Point(135, 13);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(101, 35);
             this.btnUp.TabIndex = 0;
@@ -47,7 +50,7 @@
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(266, 133);
+            this.btnRight.Location = new System.Drawing.Point(266, 72);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(101, 35);
             this.btnRight.TabIndex = 1;
@@ -57,7 +60,7 @@
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(141, 192);
+            this.btnDown.Location = new System.Drawing.Point(135, 134);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(101, 35);
             this.btnDown.TabIndex = 2;
@@ -67,7 +70,7 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(12, 133);
+            this.btnLeft.Location = new System.Drawing.Point(6, 72);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(101, 35);
             this.btnLeft.TabIndex = 3;
@@ -77,7 +80,7 @@
             // 
             // btnShoot
             // 
-            this.btnShoot.Location = new System.Drawing.Point(149, 130);
+            this.btnShoot.Location = new System.Drawing.Point(144, 65);
             this.btnShoot.Name = "btnShoot";
             this.btnShoot.Size = new System.Drawing.Size(82, 49);
             this.btnShoot.TabIndex = 4;
@@ -85,18 +88,36 @@
             this.btnShoot.UseVisualStyleBackColor = true;
             this.btnShoot.Click += new System.EventHandler(this.btnShoot_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnUp);
+            this.panel1.Controls.Add(this.btnShoot);
+            this.panel1.Controls.Add(this.btnRight);
+            this.panel1.Controls.Add(this.btnLeft);
+            this.panel1.Controls.Add(this.btnDown);
+            this.panel1.Location = new System.Drawing.Point(308, 276);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(370, 182);
+            this.panel1.TabIndex = 5;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(308, 20);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(369, 235);
+            this.panel2.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 313);
-            this.Controls.Add(this.btnShoot);
-            this.Controls.Add(this.btnLeft);
-            this.Controls.Add(this.btnDown);
-            this.Controls.Add(this.btnRight);
-            this.Controls.Add(this.btnUp);
+            this.ClientSize = new System.Drawing.Size(690, 470);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "GameJoystick";
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -108,6 +129,8 @@
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnLeft;
         private System.Windows.Forms.Button btnShoot;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

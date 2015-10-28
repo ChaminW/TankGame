@@ -44,5 +44,10 @@ namespace Tgame
         {
             new socket.client().sendData(common.parameters.LEFT);
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
