@@ -1,0 +1,9 @@
+F:\Projects\visual studio\Tgame\Tgame\Tgame\bin\Debug\Tgame.exe.config
+F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.Properties.Resources.resources
+F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.csproj.GenerateResource.Cache
+F:\Projects\visual studio\Tgame\Tgame\Tgame\bin\Debug\Tgame.exe
+F:\Projects\visual studio\Tgame\Tgame\Tgame\bin\Debug\Tgame.pdb
+F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.exe
+F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.pdb
+F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.csprojResolveAssemblyReference.cache
+F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.Form1.resources
