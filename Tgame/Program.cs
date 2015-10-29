@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tgame.decode;
 using Tgame.socket;
 
 namespace Tgame
@@ -17,11 +18,16 @@ namespace Tgame
         static void Main()
         {
 
+
+
+
+            //decode.Decode.decode("");
+
             //initially join to the server
             client client1 = new client();
-            //client1.sendData(common.parameters.JOIN);
+            client1.sendData(common.parameters.JOIN);
 
-            client1.getConnect();
+            //client1.getConnect();
 
             //init a socket for call back from the server to fetch messages
             server serverCon = new server();

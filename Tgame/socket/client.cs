@@ -18,7 +18,7 @@ namespace Tgame.socket
 
         public void getConnect()
         {
-            Console.WriteLine("trying to connect to the game server");
+            Console.WriteLine("Trying to connect to the game server");
             try
             {
                 clientSocket.Connect(IPAddress.Parse("127.0.0.1"), 6000);
@@ -38,8 +38,8 @@ namespace Tgame.socket
             }
             catch (Exception e)
             {
-                Console.WriteLine("Initial connect to the server (WRITING) is Failed! due to " + e.Message);
-                
+                Console.WriteLine("Initial connect to the server is Failed! Server is not started or connection is not stable");
+                getConnect();
             }
             finally
             {
@@ -69,7 +69,7 @@ namespace Tgame.socket
 
 
                     writer.Write(tempMsg);
-                    Console.WriteLine("Data Sended");
+                    Console.WriteLine("Data Sended- "+ message);
                     writer.Close();
                     stream.Close();
 

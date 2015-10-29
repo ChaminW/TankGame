@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Tgame.decode;
 
 namespace Tgame.socket
 {
@@ -14,13 +15,21 @@ namespace Tgame.socket
         bool errorOcurred = false;
         Socket connection = null; //The socket that is listened to     
         TcpListener listener = null;
+        NetworkStream serverStream;
+
+        public server()
+        {
+
+        }
+
+
 
         public void waitForConnection()
         {
             try
             {
                 //Creating listening Socket
-                this.listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 7000);
+                this.listener = new TcpListener(IPAddress.Any, 7000);
 
                 Console.WriteLine("Waiting for game engine response");
 
@@ -32,58 +41,65 @@ namespace Tgame.socket
                 {
 
                     connection = listener.AcceptSocket();   //connection is connected socket
-
-                    Console.WriteLine("Connetion established");
-
-                    //Fetch the messages from the server
-                    int asw = 0;
-  
-                    NetworkStream serverStream = new NetworkStream(connection);     //create a network stream using connection
-                    List<Byte> inputMsg = new List<byte>();
-
-                    //fetch messages from  server
-                    while (asw != -1)
+                    if (connection.Connected)
                     {
-                        asw = serverStream.ReadByte();
-                        inputMsg.Add((Byte)asw);
-                    }
+                        Console.WriteLine("Connetion established");
 
-                    String messageFromServer = Encoding.UTF8.GetString(inputMsg.ToArray());
-                    Console.WriteLine("Recieved message- "+messageFromServer);
+                        //Fetch the messages from the server
+                        int asw = 0;
 
+                        serverStream = new NetworkStream(connection);     //create a network stream using connection
+                        List<Byte> inputMsg = new List<byte>();
 
-                    /*
-                    Main torkenizer = new Main();
-                    //Console.Write("Response from server to join "+torkenizer.serverJoinReply(messageFromServer));
-
-                    
-
-                    try
-                    {
-                        if (messageFromServer.StartsWith("I") && messageFromServer.EndsWith("#"))
+                        //fetch messages from  server
+                        while (asw != -1)
                         {
-                            Console.WriteLine("initialize");
-                            torkenizer.initiation(messageFromServer);
+                            asw = this.serverStream.ReadByte();
+                            inputMsg.Add((Byte)asw);
                         }
-                        else if (messageFromServer.StartsWith("S") && messageFromServer.EndsWith("#"))
+                        
+
+
+                        String messageFromServer = Encoding.UTF8.GetString(inputMsg.ToArray());
+                        messageFromServer = messageFromServer.Substring(0, messageFromServer.Length -2);
+                        Console.WriteLine("Recieved message- " + messageFromServer);
+                        //throw new FormatException();
+                        //Decode dec1 = new Decode();
+
+                        try {
+                            /* if (messageFromServer.StartsWith("I") && messageFromServer.EndsWith("#"))
+                             {
+                                 Console.WriteLine("initiation");
+                                 Console.WriteLine(messageFromServer);
+                                 dec1.initiation(messageFromServer);
+
+                             }
+                             else if (messageFromServer.StartsWith("G") && messageFromServer.EndsWith("#"))
+                             {
+                                 Console.WriteLine("moving");
+                                 Console.WriteLine(messageFromServer);
+                                 dec1.moving(messageFromServer);
+
+                             }*/
+
+
+                            decode.Decode.decode(messageFromServer);
+
+
+                        }
+                        catch(Exception e)
                         {
-                            Console.WriteLine("accept");
-                            torkenizer.acceptance(messageFromServer);
+                            Console.WriteLine("Erorr in decoder"+ e.Message);
                         }
+
+
+
+
+
+
+                        this.serverStream.Close();       //close the netork stream
+                        //connection.Close();       //close the connection
                     }
-                    catch (Exception ee)
-                    {
-                        Console.WriteLine(ee.Message);
-                    }
-
-
-                    */
-
-
-
-                    serverStream.Close();       //close the netork stream
-                    //connection.Close();       //close the connection
-
                 }
             }
             catch (Exception e)

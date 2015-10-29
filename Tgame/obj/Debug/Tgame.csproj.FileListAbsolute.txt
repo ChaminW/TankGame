@@ -5,5 +5,7 @@ F:\Projects\visual studio\Tgame\Tgame\Tgame\bin\Debug\Tgame.exe
 F:\Projects\visual studio\Tgame\Tgame\Tgame\bin\Debug\Tgame.pdb
 F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.exe
 F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.pdb
-F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.csprojResolveAssemblyReference.cache
 F:\Projects\visual studio\Tgame\Tgame\Tgame\obj\Debug\Tgame.Form1.resources
+F:\Projects\visual studio\tGame\Tgame\Tgame\bin\Debug\GUI\testGui.resx
+F:\Projects\visual studio\tGame\Tgame\Tgame\bin\Debug\GUI\testGui.cs
+F:\Projects\visual studio\tGame\Tgame\Tgame\bin\Debug\GUI\testGui.Designer.cs
