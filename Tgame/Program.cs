@@ -21,6 +21,12 @@ namespace Tgame
 
 
 
+
+
+            
+
+
+
             //decode.Decode.decode("");
 
             //initially join to the server
@@ -47,7 +53,11 @@ namespace Tgame
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-
+            
+             
+             
+             
+             
         }
     }
 }

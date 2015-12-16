@@ -43,7 +43,7 @@ namespace Tgame.socket
                     connection = listener.AcceptSocket();   //connection is connected socket
                     if (connection.Connected)
                     {
-                        Console.WriteLine("Connetion established");
+                        //Console.WriteLine("Connetion established");
 
                         //Fetch the messages from the server
                         int asw = 0;
