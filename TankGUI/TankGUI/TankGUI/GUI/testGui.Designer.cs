@@ -1,4 +1,4 @@
-﻿namespace Tgame
+﻿namespace TankGUI.GUI
 {
     partial class Form1
     {

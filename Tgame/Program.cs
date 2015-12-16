@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tgame.decode;
 using Tgame.socket;
+//using Tgame.common;
+//using System.Windows.Forms;
 
-namespace Tgame
+namespace Tgame 
 {
     static class Program
     {
@@ -17,16 +19,6 @@ namespace Tgame
         [STAThread]
         static void Main()
         {
-
-
-
-
-
-
-            
-
-
-
             //decode.Decode.decode("");
 
             //initially join to the server
@@ -52,6 +44,8 @@ namespace Tgame
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            //TankGUI.Game1 game = new TankGUI.Game1();
 
             
              

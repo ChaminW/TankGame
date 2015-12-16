@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\dell\documents\visual studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2015-12-16T11:13:21.4868179+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\background.xnb</Output>
+      <Time>2015-12-16T11:13:21+05:30</Time>
     </Item>
     <Item>
       <Source>field.jpg</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\dell\documents\visual studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field.xnb</Output>
-      <Time>2015-12-16T11:39:28.4054405+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field.xnb</Output>
+      <Time>2015-12-16T11:39:28+05:30</Time>
     </Item>
     <Item>
       <Source>field1.jpg</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\dell\documents\visual studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field1.xnb</Output>
-      <Time>2015-12-16T12:13:13.2422545+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field1.xnb</Output>
+      <Time>2015-12-16T12:13:13+05:30</Time>
     </Item>
     <Item>
       <Source>field0.jpg</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\dell\documents\visual studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field0.xnb</Output>
-      <Time>2015-12-16T12:17:00.938278+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field0.xnb</Output>
+      <Time>2015-12-16T12:17:00+05:30</Time>
     </Item>
     <Item>
       <Source>foreground.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\dell\documents\visual studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\foreground.xnb</Output>
-      <Time>2015-12-16T12:21:45.0025255+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\foreground.xnb</Output>
+      <Time>2015-12-16T12:21:45+05:30</Time>
     </Item>
     <Item>
       <Source>cannon.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\cannon.xnb</Output>
-      <Time>2015-12-16T12:56:24.5924713+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\cannon.xnb</Output>
+      <Time>2015-12-16T12:56:24+05:30</Time>
     </Item>
     <Item>
       <Source>carriage.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\carriage.xnb</Output>
-      <Time>2015-12-16T12:56:30.3558009+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\carriage.xnb</Output>
+      <Time>2015-12-16T12:56:30+05:30</Time>
     </Item>
     <Item>
       <Source>plane.jpg</Source>
@@ -70,17 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\plane.xnb</Output>
-      <Time>2015-12-16T12:02:51.5836977+05:30</Time>
-    </Item>
-    <Item>
-      <Source>myFont.spritefont</Source>
-      <Name>myFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\myFont.xnb</Output>
-      <Time>2015-12-16T22:15:13.6502237+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\plane.xnb</Output>
+      <Time>2015-12-16T12:02:51+05:30</Time>
     </Item>
     <Item>
       <Source>rocket.png</Source>
@@ -88,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\rocket.xnb</Output>
-      <Time>2015-12-16T17:17:45.9603942+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\rocket.xnb</Output>
+      <Time>2015-12-16T17:17:45+05:30</Time>
     </Item>
     <Item>
       <Source>tank.png</Source>
@@ -97,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\tank.xnb</Output>
-      <Time>2015-12-16T16:46:00.53341+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\tank.xnb</Output>
+      <Time>2015-12-16T16:46:00+05:30</Time>
     </Item>
     <Item>
       <Source>shell0.png</Source>
@@ -106,8 +97,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\shell0.xnb</Output>
-      <Time>2015-12-16T22:40:06.345601+05:30</Time>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\shell0.xnb</Output>
+      <Time>2015-12-16T22:40:06+05:30</Time>
+    </Item>
+    <Item>
+      <Source>myFont.spritefont</Source>
+      <Name>myFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\myFont.xnb</Output>
+      <Time>2015-12-16T22:15:13.6502237+05:30</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -116,10 +116,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUIContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Dell\Documents\Visual Studio 2013\Projects\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUIContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

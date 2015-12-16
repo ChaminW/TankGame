@@ -5,19 +5,33 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankGUI", "TankGUI\TankGUI\TankGUI.csproj", "{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TankGUIContent", "TankGUI\TankGUIContent\TankGUIContent.contentproj", "{9A1AB163-4E1B-4839-9CDA-A477306328F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankGUIContent", "TankGUI\TankGUIContent\TankGUIContent.contentproj", "{9A1AB163-4E1B-4839-9CDA-A477306328F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Debug|x86.ActiveCfg = Debug|x86
 		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Debug|x86.Build.0 = Debug|x86
+		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Release|Any CPU.ActiveCfg = Release|x86
+		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Release|Mixed Platforms.Build.0 = Release|x86
 		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Release|x86.ActiveCfg = Release|x86
 		{B583E12A-CAB9-4765-85C2-AB0430CBBFDE}.Release|x86.Build.0 = Release|x86
+		{9A1AB163-4E1B-4839-9CDA-A477306328F3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9A1AB163-4E1B-4839-9CDA-A477306328F3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{9A1AB163-4E1B-4839-9CDA-A477306328F3}.Debug|x86.ActiveCfg = Debug|x86
+		{9A1AB163-4E1B-4839-9CDA-A477306328F3}.Release|Any CPU.ActiveCfg = Release|x86
+		{9A1AB163-4E1B-4839-9CDA-A477306328F3}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{9A1AB163-4E1B-4839-9CDA-A477306328F3}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution

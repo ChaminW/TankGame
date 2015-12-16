@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace TankGUI
+namespace TankGUI.GameEngine
 {
     /// <summary>
     /// This is the main type for your game
@@ -46,13 +46,13 @@ namespace TankGUI
 
         Texture2D cannonTexture;
         Texture2D tankTexture;
-        Texture2D rocketTexture;
+        Texture2D shellTexture;
 
-        bool rocketFlying = false;
-        Vector2 rocketPosition;
-        Vector2 rocketDirection;
-        float rocketAngle;
-        float rocketScaling = 1f;
+        bool shellFlying = false;
+        Vector2 shellPosition;
+        //Vector2 rocketDirection;
+        //float rocketAngle;
+        //float rocketScaling = 1f;
 
 
         int screenWidth;
@@ -92,6 +92,7 @@ namespace TankGUI
             
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
+
             
 
             Window.Title = "World of Tank-SL";
@@ -115,7 +116,7 @@ namespace TankGUI
 
             cannonTexture = Content.Load<Texture2D>("cannon");
             tankTexture = Content.Load<Texture2D>("tank");
-            rocketTexture = Content.Load<Texture2D>("shell0");
+            shellTexture = Content.Load<Texture2D>("shell0");
 
             screenWidth = device.PresentationParameters.BackBufferWidth;
             screenHeight = device.PresentationParameters.BackBufferHeight;
@@ -152,19 +153,35 @@ namespace TankGUI
 
             // TODO: Add your update logic here
             ProcessKeyboard();
-            UpdateRocket();
+            UpdateShell();
 
             base.Update(gameTime);
         }
 
-        private void UpdateRocket()
+        private void UpdateShell()
         {
-            if (rocketFlying)
+            if (shellFlying)
             {
-                Vector2 gravity = new Vector2(0, 1);
-                rocketDirection += gravity / 10.0f;
-                rocketPosition += rocketDirection;
-                rocketAngle = (float)Math.Atan2(rocketDirection.X, -rocketDirection.Y);
+                //Vector2 gravity = new Vector2(0, 1);
+                //rocketDirection += gravity / 10.0f;
+                //rocketPosition += rocketDirection;
+                //rocketAngle = (float)Math.Atan2(rocketDirection.X, -rocketDirection.Y);
+                /*
+                switch (players[currentPlayer].Direction)
+                {
+                    case "Left":
+                        players[currentPlayer].Position.X += 1f;
+                        break;
+                    case "right":
+                        //
+                        break;
+                    default:
+                        //sdcss
+
+
+                }
+                */
+
             }
         }
         private void ProcessKeyboard()
@@ -206,16 +223,14 @@ namespace TankGUI
 
             if (keybState.IsKeyDown(Keys.Enter) || keybState.IsKeyDown(Keys.Space))
             {
-                rocketFlying = true;
+                shellFlying = true;
 
-                rocketPosition = players[currentPlayer].Position;
-                rocketPosition.X += 20;
-                rocketPosition.Y -= 10;
-                rocketAngle = players[currentPlayer].Angle;
-                Vector2 up = new Vector2(0, -1);
-                Matrix rotMatrix = Matrix.CreateRotationZ(rocketAngle);
-                rocketDirection = Vector2.Transform(up, rotMatrix);
-                rocketDirection *= players[currentPlayer].Power / 50.0f;
+                shellPosition = players[currentPlayer].Position;
+                
+                shellPosition.X += 20;
+                shellPosition.Y -= 10;
+                
+                
             }
 
         }
@@ -234,7 +249,7 @@ namespace TankGUI
             DrawScenery();
             DrawPlayers();
             DrawText();
-            DrawRocket();
+            DrawShell();
 
 
             spriteBatch.End();
@@ -250,11 +265,11 @@ namespace TankGUI
         {
 
 
-            Rectangle screenRectangle = new Rectangle(10, 10, 700, 700);
+            Rectangle screenRectangle = new Rectangle(0, 0, 700, 700);
             spriteBatch.Draw(backgroundTexture, screenRectangle, Color.White);
             //spriteBatch.Draw(foregroundTexture, screenRectangle, Color.White);
 
-            Rectangle markRectangle = new Rectangle(720, 10, 250, 700);
+            Rectangle markRectangle = new Rectangle(720, 0, 250, 700);
 
             spriteBatch.Draw(markTexture, markRectangle, Color.White);
         }
@@ -273,21 +288,21 @@ namespace TankGUI
                     //spriteBatch.Draw(tankTexture, new Vector2(xPos + 20, yPos - 10), null, player.Color, player.Angle, cannonOrigin, playerScaling, SpriteEffects.None, 1);
                     //spriteBatch.Draw(tankTexture, player.Position, null, player.Color, 0, new Vector2(0, tankTexture.Height), playerScaling, SpriteEffects.None, 0);
 
-                    spriteBatch.Draw(cannonTexture, new Vector2(xPos + 20, yPos - 10), null, player.Color, player.Angle, cannonOrigin, playerScaling, SpriteEffects.None, 1);
+                    //spriteBatch.Draw(cannonTexture, new Vector2(xPos + 20, yPos - 10), null, player.Color, player.Angle, cannonOrigin, playerScaling, SpriteEffects.None, 1);
                     spriteBatch.Draw(tankTexture, player.Position, null, player.Color, 0, new Vector2(0, tankTexture.Height), playerScaling, SpriteEffects.None, 0);
                 
                 }
             }
         }
 
-        private void DrawRocket()
+        private void DrawShell()
         {
-            if (rocketFlying)
-                spriteBatch.Draw(rocketTexture, rocketPosition, null, players[currentPlayer].Color, rocketAngle, new Vector2(42, 240), 0.1f, SpriteEffects.None, 1);
+            if (shellFlying)
+                spriteBatch.Draw(shellTexture, shellPosition, null, players[currentPlayer].Color, 0, new Vector2(0, 0), 0, SpriteEffects.None,1);
         }
 
 
-        private void DrawText()
+        public void DrawText(String message)
         {
             PlayerData player = players[currentPlayer];
             int currentAngle = (int)MathHelper.ToDegrees(player.Angle);

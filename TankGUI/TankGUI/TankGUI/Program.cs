@@ -1,4 +1,10 @@
 using System;
+using System.Threading;
+//using System.Windows.Forms;
+using TankGUI.common;
+using TankGUI.GameEngine;
+using TankGUI.GUI;
+using TankGUI.socket;
 
 namespace TankGUI
 {
@@ -10,9 +16,24 @@ namespace TankGUI
         /// </summary>
         static void Main(string[] args)
         {
-            Game1 game = new Game1();
+            /*
+            client client1 = new client();
+            client1.sendData(parameters.JOIN);
+
+            server serverCon = new server();
+
+            Thread serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
+            serverThread.Start();
+            */
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
+
             
+
+            Game1 game = new Game1();
             game.Run();
+            
             
         }
     }

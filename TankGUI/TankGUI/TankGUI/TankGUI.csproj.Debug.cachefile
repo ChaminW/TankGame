@@ -6,7 +6,10 @@ Content\foreground.xnb
 Content\cannon.xnb
 Content\carriage.xnb
 Content\plane.xnb
-Content\myFont.xnb
 Content\rocket.xnb
 Content\tank.xnb
 Content\shell0.xnb
+Content\myFont.xnb
+GUI\testGui.resx
+GUI\testGui.cs
+GUI\testGui.Designer.cs
