@@ -18,11 +18,11 @@ namespace TankGUI
         {
 
 
-            //Game1 game = new Game1();
-            //game.Run();
+            Game1 game = new Game1();
+            game.Run();
 
 
-            //initially join to the server
+            /*/initially join to the server
             client client1 = new client();
             client1.sendData(common.parameters.JOIN);
 
@@ -31,7 +31,7 @@ namespace TankGUI
             Thread serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
             serverThread.Start();
             
-            //
+            /*/
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());

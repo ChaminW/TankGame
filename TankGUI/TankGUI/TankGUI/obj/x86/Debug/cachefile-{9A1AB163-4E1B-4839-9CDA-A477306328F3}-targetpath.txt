@@ -17,3 +17,4 @@ Content\sand.xnb
 Content\stone.xnb
 Content\water.xnb
 Content\myFont.xnb
+Content\markBoard.xnb

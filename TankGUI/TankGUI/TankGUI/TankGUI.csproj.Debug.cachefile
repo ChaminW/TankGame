@@ -17,6 +17,7 @@ Content\sand.xnb
 Content\stone.xnb
 Content\water.xnb
 Content\myFont.xnb
+Content\markBoard.xnb
 GUI\testGui.resx
 GUI\testGui.cs
 GUI\testGui.Designer.cs

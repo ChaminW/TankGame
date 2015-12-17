@@ -19,21 +19,26 @@ namespace TankGUI.socket
         TcpListener listener = null;
         NetworkStream serverStream;
         Decode TempDecode;
-        Game1 game; 
-        //game.Run();
+       
 
         public server()
         {
-            //TempDecode = new Decode();
-            game = new Game1();
-            TempDecode = new Decode(game);
-            game.Run();
+            
+            TempDecode = new Decode();
+            
         }
 
+        public Decode getDecode()
+        {
+            
+            return TempDecode;
 
+        }
 
         public void waitForConnection()
         {
+
+            
             try
             {
                 //Creating listening Socket

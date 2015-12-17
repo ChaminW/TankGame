@@ -9,6 +9,8 @@ namespace TankGUI.decode
     {
 
         public static List<List<string>> grid = new List<List<string>>();//create the grid globally
+        public static List<List<string>> list2;
+
 
         public static int myName;
         public static int myHealth;
@@ -20,16 +22,10 @@ namespace TankGUI.decode
         public static List<List<int>> coin = new List<List<int>>();
         public static List<List<int>> lifePack = new List<List<int>>();
 
-        ////////////////////////////////////////////////////////////////////
-
-        public static Game1 tempGame;
-        public Decode(Game1 tGame)
+        public List<List<string>> getGrid()
         {
-            tempGame = tGame;
+            return grid;
         }
-
-       
-        /// ////////////////////////////////////////////////////////////////////////////////////
         
         public static String nextMove()
         {
@@ -357,7 +353,7 @@ namespace TankGUI.decode
 
             List<string> list1 = msg.Split(':').ToList<string>();
 
-            List<List<string>> list2 = new List<List<string>>();
+            list2 = new List<List<string>>();
 
             for (int i = 0; i < list1.Count; i++)
             {
@@ -563,7 +559,7 @@ namespace TankGUI.decode
             setCoinToCurrentGrid();
             setLifePackToCurrentGrid();
 
-            tempGame.UpdateCells(currentGrid);
+            
 
             for (int i = 0; i < 10; i++)
             {

@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Media;
 using TankGUI.socket;
 using TankGUI.common;
 using System.Threading;
+using System.Text;
+using TankGUI.decode;
 
 namespace TankGUI.GameEngine
 {
@@ -59,6 +61,7 @@ namespace TankGUI.GameEngine
         Texture2D cannonTexture;
         Texture2D tankTexture;
         Texture2D shellTexture;
+        Texture2D layoutTexture;
 
         bool shellFlying = false;
         Vector2 shellPosition;
@@ -66,6 +69,7 @@ namespace TankGUI.GameEngine
         //float rocketAngle;
         //float rocketScaling = 1f;
 
+        String err = "";
 
         int screenWidth;
         int screenHeight;
@@ -77,6 +81,7 @@ namespace TankGUI.GameEngine
         PlayerData[] players;
         cellData[][] cells;
 
+        List<List<string>> list2tableData;
 
         int numberOfPlayers = 5;
 
@@ -84,22 +89,26 @@ namespace TankGUI.GameEngine
 
         int blockFactor = 70;
 
-        //client client1;
-        //server serverCon;
-        //Thread serverThread;
+
+        Decode TempDecode;
+        client client1;
+        server serverCon;
+        Thread serverThread;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            //client1 = new client();
-            //serverCon = new server();
+            
+            client client1 = new client();
+            serverCon = new server();
+            TempDecoder = serverCon.getDecode();
+            serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
 
-            //serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
-
-
-
+            client1.sendData(parameters.JOIN);
+            serverThread.Start();
+            
         }
 
         /// <summary>
@@ -121,9 +130,7 @@ namespace TankGUI.GameEngine
 
             
             
-            //client1.sendData(parameters.JOIN);
-            //serverThread.Start();
-            
+           
 
             Window.Title = "World of Tank-SL";
 
@@ -138,10 +145,11 @@ namespace TankGUI.GameEngine
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             device = graphics.GraphicsDevice;
-           
+
+            layoutTexture = Content.Load<Texture2D>("plane");
             backgroundTexture = Content.Load<Texture2D>("field2");
             foregroundTexture = Content.Load<Texture2D>("foreground");
-            markTexture = Content.Load<Texture2D>("plane");
+            markTexture = Content.Load<Texture2D>("markBoard");
 
 
             cannonTexture = Content.Load<Texture2D>("cannon");
@@ -185,21 +193,31 @@ namespace TankGUI.GameEngine
             // TODO: Add your update logic here
             //ProcessKeyboard();
             UpdateShell();
+            err = "";
+            UpdateCells();
 
             base.Update(gameTime);
         }
 
        
 
-        public void UpdateCells(List<List<string>> currentGrid)
+        public void UpdateCells()
         {
+            List<List<string>> currentGrid = TempDecoder.getGrid();
+
             for (int i = 0; i < 10; i++)
             {
 
                 for (int j = 0; j < 10; j++)
                 {
 
-                    cells[i][j].type = currentGrid[i][j];
+                    try { 
+                        cells[i][j].type = currentGrid[i][j];
+                    }
+                    catch(Exception e){
+                        err = "error";
+                        
+                    }
 
                 }
             }
@@ -300,6 +318,8 @@ namespace TankGUI.GameEngine
             //DrawPlayers();
             DrawCells();
             DrawText();
+            ConsolePrint();
+
             DrawShell();
 
 
@@ -315,12 +335,15 @@ namespace TankGUI.GameEngine
         private void DrawScenery()
         {
 
-
-            Rectangle screenRectangle = new Rectangle(0, 0, 700, 700);
-            spriteBatch.Draw(backgroundTexture, screenRectangle, Color.White);
-            //spriteBatch.Draw(foregroundTexture, screenRectangle, Color.White);
-
+            Rectangle layoutRectangle = new Rectangle(0, 0, 1050, 700);
+            Rectangle screenRectangle = new Rectangle(100, 100, 500, 500);
             Rectangle markRectangle = new Rectangle(720, 0, 300, 700);
+
+            spriteBatch.Draw(layoutTexture, layoutRectangle, Color.White);
+            spriteBatch.Draw(backgroundTexture, screenRectangle, Color.White);
+            
+
+           
 
             spriteBatch.Draw(markTexture, markRectangle, Color.White);
         }
@@ -393,15 +416,15 @@ namespace TankGUI.GameEngine
                             break;
                         case "3 ":
                             textuteType = "tank";
-                            tempColor = Color.Gray;
+                            tempColor = Color.White;
                             break;
                         case "4 ":
                             textuteType = "tank";
-                            tempColor = Color.Lavender;
+                            tempColor = Color.White;
                             break;
                         case "5 ":
                             textuteType = "life";
-                            tempColor = Color.Ivory;
+                            tempColor = Color.White;
                             break;
                         default:
                             textuteType = "sand";
@@ -411,16 +434,20 @@ namespace TankGUI.GameEngine
 
                     }
 
-                    try
-                    {
+                    //try
+                    //{
                         Texture2D tempTexture = Content.Load<Texture2D>(textuteType);
-                        spriteBatch.Draw(tempTexture, cells[i][j].Position, tempColor);
-                    }
-                    catch (Exception e)
-                    {
+                        //spriteBatch.Draw(tempTexture, cells[i][j].Position, tempColor);
+
+                        Rectangle tempRectangle = new Rectangle((int)(cells[i][j].Position.X), (int)cells[i][j].Position.Y, 40, 40);
+
+                        spriteBatch.Draw(tempTexture, tempRectangle, tempColor);
+                   // }
+                   // catch (Exception e)
+                    //{
 
                         //
-                    }
+                    //}
 
                 }
 
@@ -450,7 +477,14 @@ namespace TankGUI.GameEngine
             
         }
 
-        
+        private void ConsolePrint()
+        {
+            
+
+            spriteBatch.DrawString(font, err, new Vector2(0, 650), Color.White);
+            
+
+        }
 
 
 
@@ -500,8 +534,8 @@ namespace TankGUI.GameEngine
 
                 for (int j = 0; j < 10; j++)
                 {
-                    
-                    cells[i][j].Position = new Vector2((i * 50) + 5, ((j * 50) + 5));
+
+                    cells[i][j].Position = new Vector2((i * (50 ))+105, (j * (50))+105);
                     //cells[i][j].Position = new Vector2
                     //cells[i][j].type = "_ ";
                 }
@@ -517,5 +551,7 @@ namespace TankGUI.GameEngine
 
         }
 
+
+        internal Decode TempDecoder { get; set; }
     }
 }

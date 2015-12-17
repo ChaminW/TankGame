@@ -8,7 +8,7 @@ namespace Tgame.decode
     {
 
         public static List<List<string>> grid = new List<List<string>>();//create the grid globally
-
+        List<List<string>> list2;
         public static int myName;
         public static int myHealth;
         public static int numOfPlayers;
