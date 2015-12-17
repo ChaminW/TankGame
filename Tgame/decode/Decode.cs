@@ -38,7 +38,75 @@ namespace Tgame.decode
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}};
 
-            if (myHealth < 50) { Console.WriteLine("Copy the code from else statement and replace coin to lifePack"); }
+            if (myHealth < 50)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    currentGrid.Add(new List<String>());
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (!"- ".Equals(currentGrid[i][j]))
+                        {
+                            matrix[i][j] = 'X';
+                        }
+                    }
+                }
+
+                var path = (List<Point>)null;
+                int shortestDistance = 100;//longest path possible
+                int nextX = 0;
+                int nextY = 0;
+                //check the shortest path to each lifePack and record the nearest one.
+                for (int i = 0; i < lifePack.Count(); i++)
+                {
+
+                    matrix[lifePack[i][1]][lifePack[i][0]] = '1';
+                    var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(lifePack[i][1], lifePack[i][0]));
+                    if (tempPath.Count() < shortestDistance)
+                    {
+                        if (tempPath.Count() == 0)
+                        {
+
+                            nextX = lifePack[i][0];
+                            nextY = lifePack[i][1];
+
+                        }
+                        path = tempPath;
+                        shortestDistance = tempPath.Count();
+                    }
+                    matrix[lifePack[i][1]][lifePack[i][0]] = 'X';
+
+                }
+
+                if (lifePack.Any())
+                {
+
+                    if (path.Any())
+                    {
+                        nextX = path.Last().y;
+                        nextY = path.Last().x;
+                    }
+
+
+                    if (currentX < nextX)
+                    {
+                        nextMove = "RIGHT";
+                    }
+                    else if (currentX > nextX)
+                    {
+                        nextMove = "LEFT";
+                    }
+                    else if (currentY > nextY)
+                    {
+                        nextMove = "UP";
+                    }
+                    else if (currentY < nextY)
+                    {
+                        nextMove = "DOWN";
+                    }
+                }
+                Console.WriteLine(nextMove);
+            }
             else
             {
 
@@ -132,12 +200,11 @@ namespace Tgame.decode
 
         public static List<Point> FindShortestPath(char[][] matrix, int rows, int cols, Point s, Point e)
         {
-            //returns list of points of shortest path..
             bool[,] visited = new bool[rows, cols];
             Point[,] parent = new Point[rows, cols];
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
-                { 
+                {
                     visited[i, j] = false;
                     parent[i, j] = null;
                 }
@@ -636,6 +703,7 @@ namespace Tgame.decode
                 decodeLifePack(msg);
             }
         }
+
 
 
 
