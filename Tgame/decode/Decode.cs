@@ -10,6 +10,7 @@ namespace Tgame.decode
         public static List<List<string>> grid = new List<List<string>>();//create the grid globally
 
         public static int myName;
+        public static int myHealth;
         public static int numOfPlayers;
         public static int currentX;
         public static int currentY;
@@ -20,6 +21,7 @@ namespace Tgame.decode
 
         public static String nextMove()
         {
+            String nextMove = "NotDecided";
             /* 1 - North
              * 2 - East
              * 3 - South
@@ -36,63 +38,80 @@ namespace Tgame.decode
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}};
 
-            for (int i = 0; i < 10; i++)
+            if (myHealth < 50) { Console.WriteLine("Copy the code from else statement and replace coin to lifePack"); }
+            else
             {
-                currentGrid.Add(new List<String>());
-                for (int j = 0; j < 10; j++)
+
+                for (int i = 0; i < 10; i++)
                 {
-                    if (!"- ".Equals(currentGrid[i][j]))
+                    currentGrid.Add(new List<String>());
+                    for (int j = 0; j < 10; j++)
                     {
-                        matrix[i][j] = 'X';
+                        if (!"- ".Equals(currentGrid[i][j]))
+                        {
+                            matrix[i][j] = 'X';
+                        }
                     }
                 }
+
+                var path = (List<Point>)null;
+                int shortestDistance = 100;//longest path possible
+                int nextX = 0;
+                int nextY = 0;
+                //check the shortest path to each coin piles and record the nearest one.
+                for (int i = 0; i < coin.Count(); i++)
+                {
+
+                    matrix[coin[i][1]][coin[i][0]] = '1';
+                    var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(coin[i][1], coin[i][0]));
+                    if (tempPath.Count() < shortestDistance)
+                    {
+                        if (tempPath.Count() == 0)
+                        {
+
+                            nextX = coin[i][0];
+                            nextY = coin[i][1];
+
+                        }
+                        path = tempPath;
+                        shortestDistance = tempPath.Count();
+                    }
+                    matrix[coin[i][1]][coin[i][0]] = 'X';
+
+                }
+
+                if (coin.Any())
+                {
+
+                    if (path.Any())
+                    {
+                        nextX = path.Last().y;
+                        nextY = path.Last().x;
+                    }
+
+
+                    if (currentX < nextX)
+                    {
+                        nextMove = "RIGHT";
+                    }
+                    else if (currentX > nextX)
+                    {
+                        nextMove = "LEFT";
+                    }
+                    else if (currentY > nextY)
+                    {
+                        nextMove = "UP";
+                    }
+                    else if (currentY < nextY)
+                    {
+                        nextMove = "DOWN";
+                    }
+                }
+                Console.WriteLine(nextMove);
+
             }
-
-            var path = (List<Point>)null;
-            int shortestDistance = 100;//longest path possible
-
-            //check the shortest path to each coin piles and record the nearest one.
-            for (int i = 0; i < coin.Count(); i++)
-            {
-
-                matrix[coin[i][1]][coin[i][0]] = '1';
-                var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(coin[i][1], coin[i][0]));
-                if (tempPath.Count() < shortestDistance)
-                {
-                    path = tempPath;
-                    shortestDistance = tempPath.Count();
-                }
-                matrix[coin[i][1]][coin[i][0]] = 'X';
-
-            }
-            String nextMove = "NotDecided";
-            if (coin.Any())
-            {
-                int nextX = path.Last().y;
-                int nextY = path.Last().x;
-
-
-                if (currentX < nextX)
-                {
-                    nextMove = "RIGHT";
-                }
-                else if (currentX > nextX)
-                {
-                    nextMove = "LEFT";
-                }
-                else if (currentY > nextY)
-                {
-                    nextMove = "UP";
-                }
-                else if (currentY < nextY)
-                {
-                    nextMove = "DOWN";
-                }
-            }
-            Console.WriteLine(nextMove);
-
-
             return nextMove;
+
 
 
 
@@ -139,9 +158,9 @@ namespace Tgame.decode
                     {
                         curr = parent[curr.x, curr.y];
                         currPath.Add(curr);
-                        Console.Write("({0}, {1}) ", curr.x, curr.y);
+                        //Console.Write("({0}, {1}) ", curr.x, curr.y);
                     }
-                    Console.WriteLine();
+                    //Console.WriteLine();
                     if (currPath.Count < pathLength)
                     {
                         path.Clear();
@@ -176,7 +195,6 @@ namespace Tgame.decode
 
 
         }
-
 
         static void join(String msg)//identify the starting positions and directions of objects
         {
@@ -354,6 +372,7 @@ namespace Tgame.decode
                 {
                     currentX = x1;
                     currentY = y1;
+                    myHealth = int.Parse(health1);
                 }
             }
             if (numOfPlayers >= 2)
@@ -371,6 +390,8 @@ namespace Tgame.decode
                 {
                     currentX = x2;
                     currentY = y2;
+                    myHealth = int.Parse(health2);
+
                 }
             }
             if (numOfPlayers >= 3)
@@ -388,6 +409,8 @@ namespace Tgame.decode
                 {
                     currentX = x3;
                     currentY = y3;
+                    myHealth = int.Parse(health3);
+
                 }
             }
             if (numOfPlayers >= 4)
@@ -405,6 +428,8 @@ namespace Tgame.decode
                 {
                     currentX = x4;
                     currentY = y4;
+                    myHealth = int.Parse(health4);
+
                 }
             }
             if (numOfPlayers >= 5)
@@ -422,6 +447,8 @@ namespace Tgame.decode
                 {
                     currentX = x5;
                     currentY = y5;
+                    myHealth = int.Parse(health5);
+
                 }
             }
 
@@ -438,7 +465,7 @@ namespace Tgame.decode
 
 
             display(list2);
-            
+
 
         }
 

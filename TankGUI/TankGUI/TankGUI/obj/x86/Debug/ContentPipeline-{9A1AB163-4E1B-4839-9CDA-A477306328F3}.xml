@@ -109,6 +109,15 @@
       <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\myFont.xnb</Output>
       <Time>2015-12-16T22:15:13.6502237+05:30</Time>
     </Item>
+    <Item>
+      <Source>field2.jpg</Source>
+      <Name>field2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field2.xnb</Output>
+      <Time>2015-12-17T02:15:26+05:30</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{9A1AB163-4E1B-4839-9CDA-A477306328F3}</ContentProjectGUID>

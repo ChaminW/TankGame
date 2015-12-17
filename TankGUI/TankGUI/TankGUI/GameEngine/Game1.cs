@@ -29,6 +29,14 @@ namespace TankGUI.GameEngine
         public int Health;
         public int Coin;
         public int Point;
+        public String Detail;
+    }
+
+    public struct cellData
+    {
+        public Vector2 Position;
+        public String type;  // W-wall   S-stone  L-water   c-coin
+
     }
 
     
@@ -63,6 +71,9 @@ namespace TankGUI.GameEngine
 
 
         PlayerData[] players;
+        cellData[][] cells;
+
+
         int numberOfPlayers = 5;
 
         int currentPlayer = 0;
@@ -109,7 +120,7 @@ namespace TankGUI.GameEngine
             spriteBatch = new SpriteBatch(GraphicsDevice);
             device = graphics.GraphicsDevice;
            
-            backgroundTexture = Content.Load<Texture2D>("field0");
+            backgroundTexture = Content.Load<Texture2D>("field2");
             foregroundTexture = Content.Load<Texture2D>("foreground");
             markTexture = Content.Load<Texture2D>("plane");
 
@@ -190,12 +201,12 @@ namespace TankGUI.GameEngine
             if (keybState.IsKeyDown(Keys.Left))
                 for (int x=0; x < 70; x++)
                 {
-                    players[currentPlayer].Position.X -= 0.1f;
+                    players[currentPlayer].Position.X -= 1f;
                 }
             if (keybState.IsKeyDown(Keys.Right))
                 for (int x = 0; x < 70; x++)
                 {
-                    players[currentPlayer].Position.X += 0.1f;
+                    players[currentPlayer].Position.X += 1f;
                 }
 
             if (players[currentPlayer].Position.X > 650)
@@ -207,12 +218,12 @@ namespace TankGUI.GameEngine
             if (keybState.IsKeyDown(Keys.Down))
                 for (int x = 0; x < 70; x++)
                 {
-                    players[currentPlayer].Position.Y += 0.1f;
+                    players[currentPlayer].Position.Y += 1f;
                 }
             if (keybState.IsKeyDown(Keys.Up))
                 for (int x = 0; x < 70; x++)
                 {
-                    players[currentPlayer].Position.Y -= 0.1f;
+                    players[currentPlayer].Position.Y -= 1f;
                 }
 
 
@@ -289,11 +300,40 @@ namespace TankGUI.GameEngine
                     //spriteBatch.Draw(tankTexture, player.Position, null, player.Color, 0, new Vector2(0, tankTexture.Height), playerScaling, SpriteEffects.None, 0);
 
                     //spriteBatch.Draw(cannonTexture, new Vector2(xPos + 20, yPos - 10), null, player.Color, player.Angle, cannonOrigin, playerScaling, SpriteEffects.None, 1);
-                    spriteBatch.Draw(tankTexture, player.Position, null, player.Color, 0, new Vector2(0, tankTexture.Height), playerScaling, SpriteEffects.None, 0);
+                    spriteBatch.Draw(tankTexture, player.Position, null, player.Color,player.Angle, new Vector2(0, tankTexture.Height), playerScaling, SpriteEffects.None,0);
                 
                 }
             }
         }
+        /*
+        private void DrawPlayers()
+        {
+            foreach (cellData[] cellRaw in cells)
+            {
+
+                foreach (cellData cell in cellRaw)
+                {
+                    switch (cell.type)
+                    {
+                        case "W":
+                            //
+                            break;
+                        case "S":
+                            //
+                            break;
+
+
+                    }
+
+                }
+
+
+            }
+        
+
+
+        }*/
+
 
         private void DrawShell()
         {
@@ -302,14 +342,18 @@ namespace TankGUI.GameEngine
         }
 
 
-        public void DrawText(String message)
+        private void DrawText()
         {
             PlayerData player = players[currentPlayer];
             int currentAngle = (int)MathHelper.ToDegrees(player.Angle);
-            spriteBatch.DrawString(font, "Cannon angle: " + currentAngle.ToString(), new Vector2(750, 20), player.Color);
-            spriteBatch.DrawString(font, "Cannon power: " + player.Power.ToString(), new Vector2(750, 45), player.Color);
+
+
+            spriteBatch.DrawString(font, "sdsada", new Vector2(750, 100), player.Color);
+            spriteBatch.DrawString(font, "Cannon power: " + player.Power.ToString(), new Vector2(750, 120), player.Color);
             
         }
+
+        
 
 
 
@@ -328,7 +372,7 @@ namespace TankGUI.GameEngine
             {
                 players[i].IsAlive = true;
                 players[i].Color = playerColors[i];
-                players[i].Angle = MathHelper.ToRadians(90);
+                players[i].Angle = MathHelper.ToRadians(0);
                 players[i].Power = 100;
             }
 
@@ -337,12 +381,20 @@ namespace TankGUI.GameEngine
 
 
             }*/
-            players[0].Position = new Vector2(100, 193);
-            players[1].Position = new Vector2(200, 212);
-            players[2].Position = new Vector2(300, 361);
-            players[3].Position = new Vector2(400, 164);
+            players[0].Position = new Vector2(0, 0);
+            players[1].Position = new Vector2(70, 70);
+            players[2].Position = new Vector2(100, 100);
+            players[3].Position = new Vector2(140, 140);
         }
 
+
+        public void playerMove()
+        {
+
+
+
+
+        }
 
     }
 }

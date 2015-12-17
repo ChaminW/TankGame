@@ -16,7 +16,12 @@ namespace TankGUI
         /// </summary>
         static void Main(string[] args)
         {
-            /*
+
+
+            Game1 game = new Game1();
+            game.Run();
+
+            Console.WriteLine("sadasd");
             client client1 = new client();
             client1.sendData(parameters.JOIN);
 
@@ -24,15 +29,13 @@ namespace TankGUI
 
             Thread serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
             serverThread.Start();
-            */
+            
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
             
 
-            Game1 game = new Game1();
-            game.Run();
             
             
         }

@@ -60,3 +60,5 @@ C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\
 C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\obj\x86\Debug\TankGUI.csproj.GenerateResource.Cache
 C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\obj\x86\Debug\TankGUI.exe
 C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\obj\x86\Debug\TankGUI.pdb
+C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\obj\x86\Debug\TankGUI.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field2.xnb

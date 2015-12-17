@@ -10,6 +10,7 @@ Content\rocket.xnb
 Content\tank.xnb
 Content\shell0.xnb
 Content\myFont.xnb
+Content\field2.xnb
 GUI\testGui.resx
 GUI\testGui.cs
 GUI\testGui.Designer.cs

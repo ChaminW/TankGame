@@ -39,6 +39,8 @@ namespace TankGUI.socket
             catch (Exception e)
             {
                 Console.WriteLine("Initial connect to the server is Failed! Server is not started or connection is not stable");
+               
+                
                 getConnect();
             }
             finally

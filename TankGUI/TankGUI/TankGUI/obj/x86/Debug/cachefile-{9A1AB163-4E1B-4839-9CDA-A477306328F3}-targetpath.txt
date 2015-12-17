@@ -10,3 +10,4 @@ Content\rocket.xnb
 Content\tank.xnb
 Content\shell0.xnb
 Content\myFont.xnb
+Content\field2.xnb

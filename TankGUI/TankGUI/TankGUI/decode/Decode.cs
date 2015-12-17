@@ -9,7 +9,8 @@ namespace TankGUI.decode
 
         public static List<List<string>> grid = new List<List<string>>();//create the grid globally
 
-        public static String myName;
+        public static int myName;
+        public static int myHealth;
         public static int numOfPlayers;
         public static int currentX;
         public static int currentY;
@@ -18,19 +19,182 @@ namespace TankGUI.decode
         public static List<List<int>> coin = new List<List<int>>();
         public static List<List<int>> lifePack = new List<List<int>>();
 
-        public int nextMove()
+        public static String nextMove()
         {
+            String nextMove = "NotDecided";
             /* 1 - North
              * 2 - East
              * 3 - South
              * 4 - West*/
 
+            char[][] matrix = new char[][] { new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}, 
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+                                        new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}};
+
+            if (myHealth < 50) { Console.WriteLine("Copy the code from else statement and replace coin to lifePack"); }
+            else
+            {
+
+                for (int i = 0; i < 10; i++)
+                {
+                    currentGrid.Add(new List<String>());
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (!"- ".Equals(currentGrid[i][j]))
+                        {
+                            matrix[i][j] = 'X';
+                        }
+                    }
+                }
+
+                var path = (List<Point>)null;
+                int shortestDistance = 100;//longest path possible
+                int nextX = 0;
+                int nextY = 0;
+                //check the shortest path to each coin piles and record the nearest one.
+                for (int i = 0; i < coin.Count(); i++)
+                {
+
+                    matrix[coin[i][1]][coin[i][0]] = '1';
+                    var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(coin[i][1], coin[i][0]));
+                    if (tempPath.Count() < shortestDistance)
+                    {
+                        if (tempPath.Count() == 0)
+                        {
+
+                            nextX = coin[i][0];
+                            nextY = coin[i][1];
+
+                        }
+                        path = tempPath;
+                        shortestDistance = tempPath.Count();
+                    }
+                    matrix[coin[i][1]][coin[i][0]] = 'X';
+
+                }
+
+                if (coin.Any())
+                {
+
+                    if (path.Any())
+                    {
+                        nextX = path.Last().y;
+                        nextY = path.Last().x;
+                    }
+
+
+                    if (currentX < nextX)
+                    {
+                        nextMove = "RIGHT";
+                    }
+                    else if (currentX > nextX)
+                    {
+                        nextMove = "LEFT";
+                    }
+                    else if (currentY > nextY)
+                    {
+                        nextMove = "UP";
+                    }
+                    else if (currentY < nextY)
+                    {
+                        nextMove = "DOWN";
+                    }
+                }
+                Console.WriteLine(nextMove);
+
+            }
+            return nextMove;
 
 
 
-            return 0;
+
+
         }
 
+        public class Point
+        {
+            public int x;
+            public int y;
+
+            public Point(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        public static List<Point> FindShortestPath(char[][] matrix, int rows, int cols, Point s, Point e)
+        {
+            bool[,] visited = new bool[rows, cols];
+            Point[,] parent = new Point[rows, cols];
+            for (int i = 0; i < rows; i++)
+                for (int j = 0; j < cols; j++)
+                {
+                    visited[i, j] = false;
+                    parent[i, j] = null;
+                }
+
+            List<Point> path = new List<Point>();
+            int pathLength = Int32.MaxValue;
+            Queue<Point> q = new Queue<Point>();
+            q.Enqueue(s);
+            while (q.Count != 0)
+            {
+                Point curr = (Point)q.Dequeue();
+                visited[curr.x, curr.y] = true;
+                //Console.Write("({0}, {1}) ", curr.x, curr.y);
+
+                if (curr.x == e.x && curr.y == e.y)
+                {
+                    List<Point> currPath = new List<Point>();
+                    while (parent[curr.x, curr.y] != s)
+                    {
+                        curr = parent[curr.x, curr.y];
+                        currPath.Add(curr);
+                        //Console.Write("({0}, {1}) ", curr.x, curr.y);
+                    }
+                    //Console.WriteLine();
+                    if (currPath.Count < pathLength)
+                    {
+                        path.Clear();
+                        path.AddRange(currPath);
+                    }
+                }
+
+                if (curr.y + 1 < cols && matrix[curr.x][curr.y + 1] != 'X' && !visited[curr.x, curr.y + 1])
+                {
+                    q.Enqueue(new Point(curr.x, curr.y + 1));
+                    parent[curr.x, curr.y + 1] = curr;
+                }
+                if (curr.y - 1 >= 0 && matrix[curr.x][curr.y - 1] != 'X' && !visited[curr.x, curr.y - 1])
+                {
+                    q.Enqueue(new Point(curr.x, curr.y - 1));
+                    parent[curr.x, curr.y - 1] = curr;
+                }
+                if (curr.x - 1 >= 0 && matrix[curr.x - 1][curr.y] != 'X' && !visited[curr.x - 1, curr.y])
+                {
+                    q.Enqueue(new Point(curr.x - 1, curr.y));
+                    parent[curr.x - 1, curr.y] = curr;
+                }
+                if (curr.x + 1 < rows && matrix[curr.x + 1][curr.y] != 'X' && !visited[curr.x + 1, curr.y])
+                {
+                    q.Enqueue(new Point(curr.x + 1, curr.y));
+                    parent[curr.x + 1, curr.y] = curr;
+                }
+            }
+
+            return path;
+
+
+
+        }
 
         static void join(String msg)//identify the starting positions and directions of objects
         {
@@ -51,7 +215,8 @@ namespace TankGUI.decode
 
 
             List<string> st = (msg.Split(':').ToList<string>())[1].Split(';').ToList<String>();
-            myName = st[0];
+
+            myName = int.Parse(st[0].Substring(1, 1)) + 1;
 
             List<string> location = st[1].Split(',').ToList<string>();
             currentX = int.Parse(location[0]);
@@ -94,7 +259,7 @@ namespace TankGUI.decode
         static void initiation(String msg)//create the grid according to the details given
         {
             List<string> st = msg.Split(':').ToList<string>();
-            String name = st[1];
+            //String name = st[1];
 
             List<string> tempBrick = st[2].Split(';').ToList<string>();
             List<string> tempStone = st[3].Split(';').ToList<string>();
@@ -203,6 +368,12 @@ namespace TankGUI.decode
                 String coins1 = list2[1][5];
                 String points1 = list2[1][6];
                 currentGrid[y1][x1] = "1 ";
+                if (myName == 1)
+                {
+                    currentX = x1;
+                    currentY = y1;
+                    myHealth = int.Parse(health1);
+                }
             }
             if (numOfPlayers >= 2)
             {
@@ -215,6 +386,13 @@ namespace TankGUI.decode
                 String coins2 = list2[2][5];
                 String points2 = list2[2][6];
                 currentGrid[y2][x2] = "2 ";
+                if (myName == 2)
+                {
+                    currentX = x2;
+                    currentY = y2;
+                    myHealth = int.Parse(health2);
+
+                }
             }
             if (numOfPlayers >= 3)
             {
@@ -227,6 +405,13 @@ namespace TankGUI.decode
                 String coins3 = list2[3][5];
                 String points3 = list2[3][6];
                 currentGrid[y3][x3] = "3 ";
+                if (myName == 3)
+                {
+                    currentX = x3;
+                    currentY = y3;
+                    myHealth = int.Parse(health3);
+
+                }
             }
             if (numOfPlayers >= 4)
             {
@@ -239,6 +424,13 @@ namespace TankGUI.decode
                 String coins4 = list2[4][5];
                 String points4 = list2[4][6];
                 currentGrid[y4][x4] = "4 ";
+                if (myName == 4)
+                {
+                    currentX = x4;
+                    currentY = y4;
+                    myHealth = int.Parse(health4);
+
+                }
             }
             if (numOfPlayers >= 5)
             {
@@ -251,6 +443,13 @@ namespace TankGUI.decode
                 String coins5 = list2[5][5];
                 String points5 = list2[5][6];
                 currentGrid[y5][x5] = "5 ";
+                if (myName == 5)
+                {
+                    currentX = x5;
+                    currentY = y5;
+                    myHealth = int.Parse(health5);
+
+                }
             }
 
 
@@ -266,6 +465,7 @@ namespace TankGUI.decode
 
 
             display(list2);
+
 
         }
 
@@ -438,10 +638,7 @@ namespace TankGUI.decode
 
 
 
+
+
     }
-
-
-
-
-
 }
