@@ -132,12 +132,12 @@ namespace Tgame.decode
 
         public static List<Point> FindShortestPath(char[][] matrix, int rows, int cols, Point s, Point e)
         {
+            //returns list of points of shortest path
             bool[,] visited = new bool[rows, cols];
             Point[,] parent = new Point[rows, cols];
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
                 { 
-                    //
                     visited[i, j] = false;
                     parent[i, j] = null;
                 }
