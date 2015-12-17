@@ -136,7 +136,8 @@ namespace Tgame.decode
             Point[,] parent = new Point[rows, cols];
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
-                {
+                { 
+                    //
                     visited[i, j] = false;
                     parent[i, j] = null;
                 }
