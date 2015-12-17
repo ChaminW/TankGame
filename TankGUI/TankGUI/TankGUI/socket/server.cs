@@ -90,7 +90,7 @@ namespace TankGUI.socket
                         }
                         catch(Exception e)
                         {
-                            Console.WriteLine("Erorr in decoder"+ e.Message);
+                            Console.WriteLine("Erorr in decoder - "+ e.Message);
                         }
 
 

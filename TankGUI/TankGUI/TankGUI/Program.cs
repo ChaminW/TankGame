@@ -18,17 +18,19 @@ namespace TankGUI
         {
 
 
-            Game1 game = new Game1();
-            game.Run();
+            //Game1 game = new Game1();
+            //game.Run();
 
-            Console.WriteLine("sadasd");
+
+            //initially join to the server
             client client1 = new client();
-            client1.sendData(parameters.JOIN);
+            client1.sendData(common.parameters.JOIN);
 
+            //init a socket for call back from the server to fetch messages
             server serverCon = new server();
-
             Thread serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
             serverThread.Start();
+            
             
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);

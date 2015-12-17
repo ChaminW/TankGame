@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using TankGUI.socket;
+using TankGUI.common;
+using System.Threading;
 
 namespace TankGUI.GameEngine
 {
@@ -80,11 +83,22 @@ namespace TankGUI.GameEngine
 
         int blockFactor = 70;
 
+        client client1;
+        server serverCon;
+        Thread serverThread;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            client1 = new client();
+            serverCon = new server();
+
+            serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
+
+
+
         }
 
         /// <summary>
@@ -98,12 +112,16 @@ namespace TankGUI.GameEngine
             // TODO: Add your initialization logic here
 
             base.Initialize();
-            graphics.PreferredBackBufferWidth = 1000;
+            graphics.PreferredBackBufferWidth = 1050;
             graphics.PreferredBackBufferHeight = 720;
-            
+
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
 
+
+            
+            client1.sendData(parameters.JOIN);
+            serverThread.Start();
             
 
             Window.Title = "World of Tank-SL";
@@ -280,7 +298,7 @@ namespace TankGUI.GameEngine
             spriteBatch.Draw(backgroundTexture, screenRectangle, Color.White);
             //spriteBatch.Draw(foregroundTexture, screenRectangle, Color.White);
 
-            Rectangle markRectangle = new Rectangle(720, 0, 250, 700);
+            Rectangle markRectangle = new Rectangle(720, 0, 300, 700);
 
             spriteBatch.Draw(markTexture, markRectangle, Color.White);
         }
@@ -292,9 +310,9 @@ namespace TankGUI.GameEngine
                 if (player.IsAlive)
                 {
 
-                    int xPos = (int)player.Position.X;
-                    int yPos = (int)player.Position.Y;
-                    Vector2 cannonOrigin = new Vector2(11, 50);
+                    //int xPos = (int)player.Position.X;
+                    //int yPos = (int)player.Position.Y;
+                    //Vector2 cannonOrigin = new Vector2(11, 50);
 
                     //spriteBatch.Draw(tankTexture, new Vector2(xPos + 20, yPos - 10), null, player.Color, player.Angle, cannonOrigin, playerScaling, SpriteEffects.None, 1);
                     //spriteBatch.Draw(tankTexture, player.Position, null, player.Color, 0, new Vector2(0, tankTexture.Height), playerScaling, SpriteEffects.None, 0);
@@ -348,8 +366,8 @@ namespace TankGUI.GameEngine
             int currentAngle = (int)MathHelper.ToDegrees(player.Angle);
 
 
-            spriteBatch.DrawString(font, "sdsada", new Vector2(750, 100), player.Color);
-            spriteBatch.DrawString(font, "Cannon power: " + player.Power.ToString(), new Vector2(750, 120), player.Color);
+            spriteBatch.DrawString(font, "Name    To    Shot  Health  Coins   Points", new Vector2(730, 100), player.Color);
+            spriteBatch.DrawString(font, " " , new Vector2(750, 120), player.Color);
             
         }
 
