@@ -39,6 +39,7 @@ namespace TankGUI.GameEngine
     {
         public Vector2 Position;
         public String type;  // W-wall   S-stone  L-water   c-coin
+        public String Direction;
 
     }
 
@@ -83,19 +84,19 @@ namespace TankGUI.GameEngine
 
         int blockFactor = 70;
 
-        client client1;
-        server serverCon;
-        Thread serverThread;
+        //client client1;
+        //server serverCon;
+        //Thread serverThread;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            client1 = new client();
-            serverCon = new server();
+            //client1 = new client();
+            //serverCon = new server();
 
-            serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
+            //serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
 
 
 
@@ -118,10 +119,10 @@ namespace TankGUI.GameEngine
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
 
-
             
-            client1.sendData(parameters.JOIN);
-            serverThread.Start();
+            
+            //client1.sendData(parameters.JOIN);
+            //serverThread.Start();
             
 
             Window.Title = "World of Tank-SL";
@@ -154,6 +155,7 @@ namespace TankGUI.GameEngine
 
 
             SetUpPlayers();
+            SetupCells();
 
             playerScaling = 40.0f / (float)tankTexture.Width;
 
@@ -181,10 +183,26 @@ namespace TankGUI.GameEngine
                 this.Exit();
 
             // TODO: Add your update logic here
-            ProcessKeyboard();
+            //ProcessKeyboard();
             UpdateShell();
 
             base.Update(gameTime);
+        }
+
+       
+
+        public void UpdateCells(List<List<string>> currentGrid)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+
+                for (int j = 0; j < 10; j++)
+                {
+
+                    cells[i][j].type = currentGrid[i][j];
+
+                }
+            }
         }
 
         private void UpdateShell()
@@ -213,6 +231,9 @@ namespace TankGUI.GameEngine
 
             }
         }
+
+
+
         private void ProcessKeyboard()
         {
             KeyboardState keybState = Keyboard.GetState();
@@ -276,7 +297,8 @@ namespace TankGUI.GameEngine
 
             spriteBatch.Begin();
             DrawScenery();
-            DrawPlayers();
+            //DrawPlayers();
+            DrawCells();
             DrawText();
             DrawShell();
 
@@ -323,24 +345,81 @@ namespace TankGUI.GameEngine
                 }
             }
         }
-        /*
-        private void DrawPlayers()
+
+        private void DrawCells()
         {
-            foreach (cellData[] cellRaw in cells)
+            for (int i = 0; i < 10; i++ )
             {
 
-                foreach (cellData cell in cellRaw)
+                for (int j = 0; j < 10; j++ )
                 {
-                    switch (cell.type)
+                    
+
+                    //cells[i][j].type = currentGrid[i][j];
+                    String textuteType;
+                    Color tempColor;
+                    //cells[i][j].Direction;
+                    
+
+                    switch (cells[i][j].type)
                     {
-                        case "W":
-                            //
+                        case "B ":
+                            textuteType = "brick";
+                            tempColor = Color.White;
                             break;
-                        case "S":
-                            //
+                        case "W ":
+                            textuteType = "water";
+                            tempColor = Color.White;
+                            break;
+                        case "S ":
+                            textuteType = "stone";
+                            tempColor = Color.White;
+                            break;
+                        case "_ ":
+                            textuteType = "soil";
+                            tempColor = Color.White;
+                            break;
+                        case "$ ":
+                            textuteType = "coin";
+                            tempColor = Color.White;
+                            break;
+                        case "1 ":
+                            textuteType = "tank";
+                            tempColor = Color.White;
+                            break;
+                        case "2 ":
+                            textuteType = "tank";
+                            tempColor = Color.Yellow;
+                            break;
+                        case "3 ":
+                            textuteType = "tank";
+                            tempColor = Color.Gray;
+                            break;
+                        case "4 ":
+                            textuteType = "tank";
+                            tempColor = Color.Lavender;
+                            break;
+                        case "5 ":
+                            textuteType = "life";
+                            tempColor = Color.Ivory;
+                            break;
+                        default:
+                            textuteType = "sand";
+                            tempColor = Color.White;
                             break;
 
 
+                    }
+
+                    try
+                    {
+                        Texture2D tempTexture = Content.Load<Texture2D>(textuteType);
+                        spriteBatch.Draw(tempTexture, cells[i][j].Position, tempColor);
+                    }
+                    catch (Exception e)
+                    {
+
+                        //
                     }
 
                 }
@@ -350,7 +429,7 @@ namespace TankGUI.GameEngine
         
 
 
-        }*/
+        }
 
 
         private void DrawShell()
@@ -363,11 +442,11 @@ namespace TankGUI.GameEngine
         private void DrawText()
         {
             PlayerData player = players[currentPlayer];
-            int currentAngle = (int)MathHelper.ToDegrees(player.Angle);
+            //int currentAngle = (int)MathHelper.ToDegrees(player.Angle);
 
 
             spriteBatch.DrawString(font, "Name    To    Shot  Health  Coins   Points", new Vector2(730, 100), player.Color);
-            spriteBatch.DrawString(font, " " , new Vector2(750, 120), player.Color);
+            spriteBatch.DrawString(font, " " , new Vector2(750, 120), Color.Khaki);
             
         }
 
@@ -405,6 +484,30 @@ namespace TankGUI.GameEngine
             players[3].Position = new Vector2(140, 140);
         }
 
+
+        private void SetupCells()
+        {
+            cells = new cellData[10][];
+
+            for (int i = 0; i < 10; i++)
+            {
+                cells[i] = new cellData[10];
+            }
+
+
+            for (int i = 0; i < 10; i++)
+            {
+
+                for (int j = 0; j < 10; j++)
+                {
+                    
+                    cells[i][j].Position = new Vector2((i * 50) + 5, ((j * 50) + 5));
+                    //cells[i][j].Position = new Vector2
+                    //cells[i][j].type = "_ ";
+                }
+            }
+
+        }
 
         public void playerMove()
         {

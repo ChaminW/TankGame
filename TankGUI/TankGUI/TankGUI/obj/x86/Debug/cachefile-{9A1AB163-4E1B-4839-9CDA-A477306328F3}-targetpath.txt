@@ -9,5 +9,11 @@ Content\plane.xnb
 Content\rocket.xnb
 Content\tank.xnb
 Content\shell0.xnb
-Content\myFont.xnb
 Content\field2.xnb
+Content\brick.xnb
+Content\coin.xnb
+Content\life.xnb
+Content\sand.xnb
+Content\stone.xnb
+Content\water.xnb
+Content\myFont.xnb

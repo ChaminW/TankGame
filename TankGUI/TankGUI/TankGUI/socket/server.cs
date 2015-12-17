@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using TankGUI.decode;
+using TankGUI.GameEngine;
 //using TankGUI;
 
 namespace TankGUI.socket
@@ -17,10 +18,16 @@ namespace TankGUI.socket
         Socket connection = null; //The socket that is listened to     
         TcpListener listener = null;
         NetworkStream serverStream;
+        Decode TempDecode;
+        Game1 game; 
+        //game.Run();
 
         public server()
         {
-
+            //TempDecode = new Decode();
+            game = new Game1();
+            TempDecode = new Decode(game);
+            game.Run();
         }
 
 
@@ -84,7 +91,7 @@ namespace TankGUI.socket
                              }*/
 
 
-                            Decode.decode(messageFromServer);
+                            TempDecode.decode(messageFromServer);
 
 
                         }

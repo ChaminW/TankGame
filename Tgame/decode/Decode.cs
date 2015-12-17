@@ -27,7 +27,15 @@ namespace Tgame.decode
              * 3 - South
              * 4 - West*/
 
-            char[][] matrix = new char[][] { new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+
+            List<int> dangerFrom = survive();
+            if (dangerFrom == null)
+            {
+                nextMove = "SHOOT";
+            }
+            else
+            {
+                char[][] matrix = new char[][] { new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
@@ -38,152 +46,114 @@ namespace Tgame.decode
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
                                         new char[] {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}};
 
-            if (myHealth < 50)
-            {
-                for (int i = 0; i < 10; i++)
+                //if health is low then life packs get high priority
+                int nextDirection = 0;
+                if (myHealth < 50)
                 {
-                    currentGrid.Add(new List<String>());
-                    for (int j = 0; j < 10; j++)
+
+                }
+
+                else
+                {
+
+                    for (int i = 0; i < 10; i++)
                     {
-                        if (!"- ".Equals(currentGrid[i][j]))
+                        currentGrid.Add(new List<String>());
+                        for (int j = 0; j < 10; j++)
                         {
-                            matrix[i][j] = 'X';
+                            if (!"- ".Equals(currentGrid[i][j]))
+                            {
+                                matrix[i][j] = 'X';
+                            }
+                        }
+                    }
+
+                    var path = (List<Point>)null;
+                    int shortestDistance = 100;//longest path possible
+                    int nextX = 0;
+                    int nextY = 0;
+                    //check the shortest path to each coin piles and record the nearest one.
+                    for (int i = 0; i < coin.Count(); i++)
+                    {
+
+                        matrix[coin[i][1]][coin[i][0]] = '1';
+                        var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(coin[i][1], coin[i][0]));
+                        if (tempPath.Count() < shortestDistance)
+                        {
+                            if (tempPath.Count() == 0)
+                            {
+
+                                nextX = coin[i][0];
+                                nextY = coin[i][1];
+                                coin.RemoveAt(i);
+
+                            }
+                            path = tempPath;
+                            shortestDistance = tempPath.Count();
+                        }
+                        matrix[coin[i][1]][coin[i][0]] = 'X';
+
+                    }
+
+                    if (coin.Any())
+                    {
+
+                        if (path.Any())
+                        {
+                            nextX = path.Last().y;
+                            nextY = path.Last().x;
+                        }
+
+
+                        if (currentX < nextX)
+                        {
+                            nextDirection = 1;
+                        }
+                        else if (currentX > nextX)
+                        {
+                            nextDirection = 3;
+                        }
+                        else if (currentY > nextY)
+                        {
+                            nextDirection = 0;
+                        }
+                        else if (currentY < nextY)
+                        {
+                            nextDirection = 2;
                         }
                     }
                 }
 
-                var path = (List<Point>)null;
-                int shortestDistance = 100;//longest path possible
-                int nextX = 0;
-                int nextY = 0;
-                //check the shortest path to each lifePack and record the nearest one.
-                for (int i = 0; i < lifePack.Count(); i++)
+                if (!dangerFrom.Contains(nextDirection))
                 {
-
-                    matrix[lifePack[i][1]][lifePack[i][0]] = '1';
-                    var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(lifePack[i][1], lifePack[i][0]));
-                    if (tempPath.Count() < shortestDistance)
-                    {
-                        if (tempPath.Count() == 0)
-                        {
-
-                            nextX = lifePack[i][0];
-                            nextY = lifePack[i][1];
-
-                        }
-                        path = tempPath;
-                        shortestDistance = tempPath.Count();
-                    }
-                    matrix[lifePack[i][1]][lifePack[i][0]] = 'X';
-
-                }
-
-                if (lifePack.Any())
-                {
-
-                    if (path.Any())
-                    {
-                        nextX = path.Last().y;
-                        nextY = path.Last().x;
-                    }
-
-
-                    if (currentX < nextX)
-                    {
-                        nextMove = "RIGHT";
-                    }
-                    else if (currentX > nextX)
-                    {
-                        nextMove = "LEFT";
-                    }
-                    else if (currentY > nextY)
+                    if (nextDirection == 0)
                     {
                         nextMove = "UP";
                     }
-                    else if (currentY < nextY)
-                    {
-                        nextMove = "DOWN";
-                    }
-                }
-                Console.WriteLine(nextMove);
-            }
-            else
-            {
-
-                for (int i = 0; i < 10; i++)
-                {
-                    currentGrid.Add(new List<String>());
-                    for (int j = 0; j < 10; j++)
-                    {
-                        if (!"- ".Equals(currentGrid[i][j]))
-                        {
-                            matrix[i][j] = 'X';
-                        }
-                    }
-                }
-
-                var path = (List<Point>)null;
-                int shortestDistance = 100;//longest path possible
-                int nextX = 0;
-                int nextY = 0;
-                //check the shortest path to each coin piles and record the nearest one.
-                for (int i = 0; i < coin.Count(); i++)
-                {
-
-                    matrix[coin[i][1]][coin[i][0]] = '1';
-                    var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(coin[i][1], coin[i][0]));
-                    if (tempPath.Count() < shortestDistance)
-                    {
-                        if (tempPath.Count() == 0)
-                        {
-
-                            nextX = coin[i][0];
-                            nextY = coin[i][1];
-
-                        }
-                        path = tempPath;
-                        shortestDistance = tempPath.Count();
-                    }
-                    matrix[coin[i][1]][coin[i][0]] = 'X';
-
-                }
-
-                if (coin.Any())
-                {
-
-                    if (path.Any())
-                    {
-                        nextX = path.Last().y;
-                        nextY = path.Last().x;
-                    }
-
-
-                    if (currentX < nextX)
+                    else if (nextDirection == 1)
                     {
                         nextMove = "RIGHT";
                     }
-                    else if (currentX > nextX)
-                    {
-                        nextMove = "LEFT";
-                    }
-                    else if (currentY > nextY)
-                    {
-                        nextMove = "UP";
-                    }
-                    else if (currentY < nextY)
+                    else if (nextDirection == 2)
                     {
                         nextMove = "DOWN";
                     }
+                    else if (nextDirection == 3)
+                    {
+                        nextMove = "LEFT";
+                    }
                 }
-                Console.WriteLine(nextMove);
+                else
+                {
+                    //
+                    Console.WriteLine("enter what to do here");
+                }
 
             }
+
+
+            Console.WriteLine(nextMove);
             return nextMove;
-
-
-
-
-
         }
 
         public class Point
@@ -264,6 +234,63 @@ namespace Tgame.decode
 
         }
 
+        public static List<int> survive()
+        {
+            //if there is tank which can shoot us then either shoot it or go out from the path
+            List<int> dangerFrom = new List<int>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                int number;
+
+
+                //check for the danger from y direction
+                if (int.TryParse(currentGrid[i][currentX].Substring(0, 1), out number) && number != myName)
+                {
+                    if (i < currentX)
+                    {
+                        //up - danger
+                        dangerFrom.Add(0);
+                        //Console.WriteLine("--UP");
+                    }
+                    else if (i > currentX)
+                    {
+                        //down - danger
+                        dangerFrom.Add(2);
+                        //Console.WriteLine("--DOWN");
+                    }
+                }
+
+                //check for the danger from y direction
+                if (int.TryParse(currentGrid[currentY][i].Substring(0, 1), out number) && number != myName)
+                {
+                    if (i < currentY)
+                    {
+                        //left - danger
+                        dangerFrom.Add(3);
+                        //Console.WriteLine("--LEFT");
+                    }
+                    else if (i > currentY)
+                    {
+                        //right
+                        dangerFrom.Add(1);
+                        //Console.WriteLine("--RIGHT");
+                    }
+                }
+            }
+            if (dangerFrom.Contains(currentDirection))
+            {
+                return null;
+            }
+            else
+            {
+               
+                dangerFrom.ForEach(Console.WriteLine);
+                return dangerFrom;
+            }
+        }
+
+
         static void join(String msg)//identify the starting positions and directions of objects
         {
 
@@ -338,6 +365,7 @@ namespace Tgame.decode
             List<List<int>> water = new List<List<int>>();
 
 
+
             //convert strings to integers
             for (int i = 0; i < tempBrick.Count; i++)
             {
@@ -376,7 +404,7 @@ namespace Tgame.decode
             {
                 grid[stone[i][0]][stone[i][1]] = "S ";
             }
-            for (int i = 0; i < brick.Count; i++)
+            for (int i = 0; i < water.Count; i++)
             {
                 grid[water[i][0]][water[i][1]] = "W ";
             }
@@ -665,7 +693,7 @@ namespace Tgame.decode
 
         }
 
-        //other classes call this function only
+        
         public static void decode(String msg)
         {
 
@@ -690,6 +718,7 @@ namespace Tgame.decode
             {
                 //if (grid.Count > 0) {
                 moving(msg);
+                nextMove();
                 //else  {Console.WriteLine("Initialize the game first (call 'initiation' function)");}
             }
             else if (letter.Equals("C"))
@@ -702,10 +731,7 @@ namespace Tgame.decode
             {
                 decodeLifePack(msg);
             }
-        }
-
-
-
+        }//other classes call this function only
 
 
 

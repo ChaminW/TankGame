@@ -31,7 +31,7 @@ namespace TankGUI
             Thread serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
             serverThread.Start();
             
-            
+            //
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());

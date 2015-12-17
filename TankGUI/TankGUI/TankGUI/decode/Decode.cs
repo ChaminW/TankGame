@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TankGUI.GameEngine;
 
 namespace TankGUI.decode
 {
@@ -19,6 +20,17 @@ namespace TankGUI.decode
         public static List<List<int>> coin = new List<List<int>>();
         public static List<List<int>> lifePack = new List<List<int>>();
 
+        ////////////////////////////////////////////////////////////////////
+
+        public static Game1 tempGame;
+        public Decode(Game1 tGame)
+        {
+            tempGame = tGame;
+        }
+
+       
+        /// ////////////////////////////////////////////////////////////////////////////////////
+        
         public static String nextMove()
         {
             String nextMove = "NotDecided";
@@ -545,18 +557,23 @@ namespace TankGUI.decode
         static void display(List<List<string>> list2)
         {
             //print the grid on the console // not nececcery
-            Console.Clear();
+            //Console.Clear();
 
             //set coins before display
             setCoinToCurrentGrid();
             setLifePackToCurrentGrid();
 
+            tempGame.UpdateCells(currentGrid);
 
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
                     Console.Write(currentGrid[i][j]);
+                    
+                    
+                    
+
                 }
                 Console.WriteLine("");
             }
@@ -598,8 +615,10 @@ namespace TankGUI.decode
         }
 
         //other classes call this function only
-        public static void decode(String msg)
+        public void decode(String msg)
         {
+            
+
 
 
             //remove the # mark
@@ -636,8 +655,10 @@ namespace TankGUI.decode
             }
         }
 
-
-
+        
+        /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
 
 
     }
