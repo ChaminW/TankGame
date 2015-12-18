@@ -16,8 +16,11 @@ Content\life.xnb
 Content\sand.xnb
 Content\stone.xnb
 Content\water.xnb
-Content\myFont.xnb
 Content\markBoard.xnb
+Content\other.xnb
+Content\blank.xnb
+Content\myFont.xnb
+Content\SpriteFont1.xnb
 GUI\testGui.resx
 GUI\testGui.cs
 GUI\testGui.Designer.cs

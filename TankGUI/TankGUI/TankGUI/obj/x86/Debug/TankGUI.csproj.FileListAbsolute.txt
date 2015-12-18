@@ -67,5 +67,7 @@ C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86
 C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\sand.xnb
 C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\stone.xnb
 C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\water.xnb
-C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\obj\x86\Debug\TankGUI.csprojResolveAssemblyReference.cache
 C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\markBoard.xnb
+C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\other.xnb
+C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\blank.xnb
+C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\SpriteFont1.xnb

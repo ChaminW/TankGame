@@ -31,6 +31,11 @@ namespace Tgame
             server serverCon = new server();
             Thread serverThread = new Thread(new ThreadStart(() => serverCon.waitForConnection()));
             serverThread.Start();
+
+           
+
+
+
             //Console.WriteLine("thread start");
 
             //server server1 = new server();

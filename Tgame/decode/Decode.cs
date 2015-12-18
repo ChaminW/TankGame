@@ -8,7 +8,7 @@ namespace Tgame.decode
     {
 
         public static List<List<string>> grid = new List<List<string>>();//create the grid globally
-        List<List<string>> list2;
+        public static List<List<string>> list2;
         public static int myName;
         public static int myHealth;
         public static int numOfPlayers;
@@ -18,6 +18,23 @@ namespace Tgame.decode
         public static List<List<string>> currentGrid = new List<List<string>>();
         public static List<List<int>> coin = new List<List<int>>();
         public static List<List<int>> lifePack = new List<List<int>>();
+
+        public Decode()
+        {
+            //just to avoid errors the grid and current grid will be initialized with "- "
+            grid.Clear();
+            currentGrid.Clear();
+            for (int i = 0; i < 10; i++)
+            {
+                grid.Add(new List<String>());
+                currentGrid.Add(new List<String>());
+                for (int j = 0; j < 10; j++)
+                {
+                    grid[i].Add("- ");
+                    currentGrid[i].Add("- ");
+                }
+            }
+        }
 
         public static String nextMove()
         {
@@ -31,7 +48,7 @@ namespace Tgame.decode
             List<int> dangerFrom = survive();
             if (dangerFrom == null)
             {
-                nextMove = "SHOOT";
+                nextMove = "SHOOT#";
             }
             else
             {
@@ -128,19 +145,19 @@ namespace Tgame.decode
                 {
                     if (nextDirection == 0)
                     {
-                        nextMove = "UP";
+                        nextMove = "UP#";
                     }
                     else if (nextDirection == 1)
                     {
-                        nextMove = "RIGHT";
+                        nextMove = "RIGHT#";
                     }
                     else if (nextDirection == 2)
                     {
-                        nextMove = "DOWN";
+                        nextMove = "DOWN#";
                     }
                     else if (nextDirection == 3)
                     {
-                        nextMove = "LEFT";
+                        nextMove = "LEFT#";
                     }
                 }
                 else
@@ -284,7 +301,7 @@ namespace Tgame.decode
             }
             else
             {
-               
+
                 dangerFrom.ForEach(Console.WriteLine);
                 return dangerFrom;
             }
@@ -295,18 +312,17 @@ namespace Tgame.decode
         {
 
 
-            if (currentGrid.Count < 10)
+
+            currentGrid.Clear();
+            for (int i = 0; i < 10; i++)
             {
-                currentGrid.Clear();
-                for (int i = 0; i < 10; i++)
+                currentGrid.Add(new List<String>());
+                for (int j = 0; j < 10; j++)
                 {
-                    currentGrid.Add(new List<String>());
-                    for (int j = 0; j < 10; j++)
-                    {
-                        currentGrid[i].Add("- ");
-                    }
+                    currentGrid[i].Add("- ");
                 }
             }
+
 
 
             List<string> st = (msg.Split(':').ToList<string>())[1].Split(';').ToList<String>();
@@ -441,7 +457,7 @@ namespace Tgame.decode
 
             List<string> list1 = msg.Split(':').ToList<string>();
 
-            List<List<string>> list2 = new List<List<string>>();
+            list2 = new List<List<string>>();
 
             for (int i = 0; i < list1.Count; i++)
             {
@@ -693,7 +709,7 @@ namespace Tgame.decode
 
         }
 
-        
+
         public static void decode(String msg)
         {
 
@@ -718,7 +734,13 @@ namespace Tgame.decode
             {
                 //if (grid.Count > 0) {
                 moving(msg);
-                nextMove();
+
+
+                String nextMov = nextMove();
+                new socket.client().sendData(nextMov);
+                Console.WriteLine("Data sent " + nextMov);
+
+
                 //else  {Console.WriteLine("Initialize the game first (call 'initiation' function)");}
             }
             else if (letter.Equals("C"))

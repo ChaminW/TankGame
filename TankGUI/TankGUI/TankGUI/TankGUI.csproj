@@ -75,6 +75,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="common\ErrorViwer.cs" />
     <Compile Include="common\parameters.cs" />
     <Compile Include="decode\Calculations.cs" />
     <Compile Include="decode\Decode.cs" />
