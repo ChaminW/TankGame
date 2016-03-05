@@ -707,7 +707,7 @@ namespace TankGUI.decode
                 {
                     direction = "South";
                 }
-                else if (list2[i][2] == "3")
+                else if (list2[i][2] == "3" )
                 {
                     direction = "West";
                 }
