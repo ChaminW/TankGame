@@ -287,10 +287,10 @@ namespace TankGUI.GameEngine
                     try
                     {
                         players[i].Detail = MarkList[i][0] + "       " + MarkList[i][4] + "       " + MarkList[i][5] + "       " + MarkList[i][6];
-                        players[i].IsShot = Int32.Parse(MarkList[i][3]);
-                        players[i].Health = Int32.Parse(MarkList[i][4]);
-                        players[i].Coin = Int32.Parse(MarkList[i][5]);
-                        players[i].Point = Int32.Parse(MarkList[i][6]);
+                        //players[i].IsShot = Int32.Parse(MarkList[i][3]);
+                        //players[i].Health = Int32.Parse(MarkList[i][4]);
+                        //players[i].Coin = Int32.Parse(MarkList[i][5]);
+                        //players[i].Point = Int32.Parse(MarkList[i][6]);
 
 
                     }
@@ -502,7 +502,7 @@ namespace TankGUI.GameEngine
                         Rectangle tempRectangle = new Rectangle((int)(cells[i][j].Position.X), (int)cells[i][j].Position.Y, 50, 50);
 
                         //spriteBatch.Draw(tempTexture, tempRectangle, tempColor);
-                        spriteBatch.Draw(tempTexture, cells[i][j].Position, null, Color.Tomato, player.Angle, new Vector2(25,25), .8f, SpriteEffects.None, 0);
+                        spriteBatch.Draw(tempTexture, cells[i][j].Position, null, Color.White, player.Angle, new Vector2(25,25), .8f, SpriteEffects.None, 0);
                 
                    // }
                    // catch (Exception e)

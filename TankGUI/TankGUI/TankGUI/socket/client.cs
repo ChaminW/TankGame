@@ -71,7 +71,7 @@ namespace TankGUI.socket
 
 
                     writer.Write(tempMsg);
-                    Console.WriteLine("Data Sended- "+ message);
+                    Console.WriteLine("Data Sent- "+ message);
                     writer.Close();
                     stream.Close();
 

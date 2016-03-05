@@ -65,9 +65,79 @@ namespace Tgame.decode
 
                 //if health is low then life packs get high priority
                 int nextDirection = 0;
-                if (myHealth < 50)
+                if (myHealth < 80 || coin.Count() == 0)
                 {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        currentGrid.Add(new List<String>());
+                        for (int j = 0; j < 10; j++)
+                        {
+                            if (!"- ".Equals(currentGrid[i][j]))
+                            {
+                                matrix[i][j] = 'X';
+                            }
+                        }
+                    }
 
+                    var path = (List<Point>)null;
+                    int shortestDistance = 100;//longest path possible
+                    int nextX = 0;
+                    int nextY = 0;
+                    //check the shortest path to each lifePack piles and record the nearest one.
+                    for (int i = 0; i < lifePack.Count(); i++)
+                    {
+                        if (currentY == lifePack[i][1] & currentX == lifePack[i][1])
+                        {
+                            lifePack.RemoveAt(i);
+                        }
+                        matrix[lifePack[i][1]][lifePack[i][0]] = '1';
+
+                        var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(lifePack[i][1], lifePack[i][0]));
+                        if (tempPath.Count() < shortestDistance)
+                        {
+
+                            if (tempPath.Count() == 0)
+                            {
+
+                                nextX = lifePack[i][0];
+                                nextY = lifePack[i][1];
+                                //lifePack.RemoveAt(i);
+
+                            }
+                            path = tempPath;
+                            shortestDistance = tempPath.Count();
+                        }
+                        matrix[lifePack[i][1]][lifePack[i][0]] = 'X';
+
+                    }
+
+                    if (lifePack.Any())
+                    {
+
+                        if (path.Any())
+                        {
+                            nextX = path.Last().y;
+                            nextY = path.Last().x;
+                        }
+
+
+                        if (currentX < nextX)
+                        {
+                            nextDirection = 1;
+                        }
+                        else if (currentX > nextX)
+                        {
+                            nextDirection = 3;
+                        }
+                        else if (currentY > nextY)
+                        {
+                            nextDirection = 0;
+                        }
+                        else if (currentY < nextY)
+                        {
+                            nextDirection = 2;
+                        }
+                    }
                 }
 
                 else
@@ -92,17 +162,22 @@ namespace Tgame.decode
                     //check the shortest path to each coin piles and record the nearest one.
                     for (int i = 0; i < coin.Count(); i++)
                     {
-
+                        if (currentY == coin[i][1] & currentX == coin[i][1])
+                        {
+                            coin.RemoveAt(i);
+                        }
                         matrix[coin[i][1]][coin[i][0]] = '1';
+
                         var tempPath = FindShortestPath(matrix, 10, 10, new Point(currentY, currentX), new Point(coin[i][1], coin[i][0]));
                         if (tempPath.Count() < shortestDistance)
                         {
+
                             if (tempPath.Count() == 0)
                             {
 
                                 nextX = coin[i][0];
                                 nextY = coin[i][1];
-                                coin.RemoveAt(i);
+                                //coin.RemoveAt(i);
 
                             }
                             path = tempPath;
@@ -477,9 +552,18 @@ namespace Tgame.decode
                 String d1 = list2[1][2];
                 String shot1 = list2[1][3];
                 String health1 = list2[1][4];
+
+
                 String coins1 = list2[1][5];
                 String points1 = list2[1][6];
-                currentGrid[y1][x1] = "1 ";
+                if (int.Parse(health1) == 0)
+                {
+                    currentGrid[y1][x1] = "- ";
+                }
+                else
+                {
+                    currentGrid[y1][x1] = "1 ";
+                }
                 if (myName == 1)
                 {
                     currentX = x1;
@@ -497,7 +581,15 @@ namespace Tgame.decode
                 String health2 = list2[2][4];
                 String coins2 = list2[2][5];
                 String points2 = list2[2][6];
-                currentGrid[y2][x2] = "2 ";
+
+                if (int.Parse(health2) == 0)
+                {
+                    currentGrid[y2][x2] = "- ";
+                }
+                else
+                {
+                    currentGrid[y2][x2] = "2 ";
+                }
                 if (myName == 2)
                 {
                     currentX = x2;
@@ -516,7 +608,16 @@ namespace Tgame.decode
                 String health3 = list2[3][4];
                 String coins3 = list2[3][5];
                 String points3 = list2[3][6];
-                currentGrid[y3][x3] = "3 ";
+
+                if (int.Parse(health3) == 0)
+                {
+                    currentGrid[y3][x3] = "- ";
+                }
+                else
+                {
+                    currentGrid[y3][x3] = "3 ";
+                }
+
                 if (myName == 3)
                 {
                     currentX = x3;
@@ -535,7 +636,14 @@ namespace Tgame.decode
                 String health4 = list2[4][4];
                 String coins4 = list2[4][5];
                 String points4 = list2[4][6];
-                currentGrid[y4][x4] = "4 ";
+                if (int.Parse(health4) == 0)
+                {
+                    currentGrid[y4][x4] = "- ";
+                }
+                else
+                {
+                    currentGrid[y4][x4] = "4 ";
+                }
                 if (myName == 4)
                 {
                     currentX = x4;
@@ -554,7 +662,15 @@ namespace Tgame.decode
                 String health5 = list2[5][4];
                 String coins5 = list2[5][5];
                 String points5 = list2[5][6];
-                currentGrid[y5][x5] = "5 ";
+
+                if (int.Parse(health5) == 0)
+                {
+                    currentGrid[y5][x5] = "- ";
+                }
+                else
+                {
+                    currentGrid[y5][x5] = "5 ";
+                }
                 if (myName == 5)
                 {
                     currentX = x5;
@@ -735,12 +851,7 @@ namespace Tgame.decode
                 //if (grid.Count > 0) {
                 moving(msg);
 
-
-                String nextMov = nextMove();
-                new socket.client().sendData(nextMov);
-                Console.WriteLine("Data sent " + nextMov);
-
-
+                new socket.client().sendData(nextMove());
                 //else  {Console.WriteLine("Initialize the game first (call 'initiation' function)");}
             }
             else if (letter.Equals("C"))
@@ -754,6 +865,7 @@ namespace Tgame.decode
                 decodeLifePack(msg);
             }
         }//other classes call this function only
+
 
 
 

@@ -71,3 +71,16 @@ C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86
 C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\other.xnb
 C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\blank.xnb
 C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Dell\Dropbox\ProgammingChallenge2\Tgame\TankGUI\TankGUI\TankGUI\obj\x86\Debug\TankGUI.csprojResolveAssemblyReference.cache
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\field2.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\brick.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\coin.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\life.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\sand.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\stone.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\water.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\markBoard.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\other.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\blank.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Chanaka Maduranga\Dropbox\Progamming Challenge 2\Tgame\TankGUI\TankGUI\TankGUI\bin\x86\Debug\TankGUI.pdb

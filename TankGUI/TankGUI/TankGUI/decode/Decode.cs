@@ -722,10 +722,11 @@ namespace TankGUI.decode
         }
 
 
+        //other classes call this function only
         public void decode(String msg)
         {
 
-
+            
             //remove the # mark
             if (msg.Substring(msg.Length - 1).Equals("#"))
             {
@@ -750,7 +751,7 @@ namespace TankGUI.decode
 
                 String nextMov = nextMove();
                 new socket.client().sendData(nextMov);
-                Console.WriteLine("Data sent " + nextMov);
+                //Console.WriteLine("Data sent " + nextMov);
 
 
                 //else  {Console.WriteLine("Initialize the game first (call 'initiation' function)");}
@@ -765,7 +766,7 @@ namespace TankGUI.decode
             {
                 decodeLifePack(msg);
             }
-        }//other classes call this function only
+        }
 
 
 
